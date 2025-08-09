@@ -1,0 +1,17 @@
+name: POC Trigger
+
+on:
+  pull_request_target:
+    types: [opened, edited, reopened]
+
+jobs:
+  trigger-codeowners:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Simulate add-codeowners-to-pr.yml trigger
+        run: |
+          echo "This PR should trigger the add-codeowners-to-pr.yml workflow if it matches its on: conditions."
+          echo "PR Title: ${{ github.event.pull_request.title }}"
