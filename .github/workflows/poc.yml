@@ -1,0 +1,18 @@
+name: PoC Injection
+
+on:
+  pull_request_target:
+    types: [opened, edited, reopened]
+
+jobs:
+  test-injection:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Show PR title raw
+        run: |
+          echo "Raw title:"
+          echo "${{ github.event.pull_request.title }}"
+
+      - name: Dangerous eval simulation
+        run: |
+          bash -c "echo Injected Title: ${{ github.event.pull_request.title }}"
